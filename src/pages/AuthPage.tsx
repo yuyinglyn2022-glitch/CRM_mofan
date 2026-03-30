@@ -22,7 +22,7 @@ export default function AuthPage() {
       } else {
         const { error } = await supabase.auth.signUp({ email, password });
         if (error) throw error;
-        alert('Check your email for the confirmation link!');
+        alert('请检查您的邮箱以获取确认链接！');
       }
     } catch (err: any) {
       setError(err.message);
@@ -39,17 +39,17 @@ export default function AuthPage() {
             {isLogin ? <LogIn className="text-white w-6 h-6" /> : <UserPlus className="text-white w-6 h-6" />}
           </div>
           <h1 className="text-2xl font-semibold text-gray-900">
-            {isLogin ? 'Welcome Back' : 'Create Account'}
+            {isLogin ? '欢迎回来' : '创建账号'}
           </h1>
           <p className="text-gray-500 text-sm mt-2">
-            {isLogin ? 'Enter your credentials to access your CRM' : 'Sign up to start managing your customers'}
+            {isLogin ? '输入您的凭据以访问 CRM' : '注册并开始管理您的客户'}
           </p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">
-              Email Address
+              邮箱地址
             </label>
             <input
               type="email"
@@ -62,7 +62,7 @@ export default function AuthPage() {
           </div>
           <div>
             <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">
-              Password
+              密码
             </label>
             <input
               type="password"
@@ -85,7 +85,7 @@ export default function AuthPage() {
             disabled={loading}
             className="w-full bg-black text-white py-3 rounded-xl font-medium hover:bg-gray-800 transition-colors flex items-center justify-center gap-2 disabled:opacity-50"
           >
-            {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : (isLogin ? 'Sign In' : 'Sign Up')}
+            {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : (isLogin ? '登录' : '注册')}
           </button>
         </form>
 
@@ -94,7 +94,7 @@ export default function AuthPage() {
             onClick={() => setIsLogin(!isLogin)}
             className="text-sm text-gray-500 hover:text-black transition-colors"
           >
-            {isLogin ? "Don't have an account? Sign up" : 'Already have an account? Sign in'}
+            {isLogin ? "还没有账号？立即注册" : '已经有账号了？立即登录'}
           </button>
         </div>
       </div>

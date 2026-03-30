@@ -75,7 +75,7 @@ export default function CustomerDetail() {
       fetchCustomerData();
     } catch (err) {
       console.error('Error adding journey:', err);
-      alert('Failed to add journey entry');
+      alert('添加旅程记录失败');
     }
   };
 
@@ -97,7 +97,7 @@ export default function CustomerDetail() {
     >
       <Link to="/" className="inline-flex items-center gap-2 text-gray-500 hover:text-black mb-8 transition-colors group">
         <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-        Back to Dashboard
+        返回仪表板
       </Link>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -127,7 +127,7 @@ export default function CustomerDetail() {
 
             {customer.notes && (
               <div className="mt-8 pt-6 border-t border-gray-50">
-                <h4 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Notes</h4>
+                <h4 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">备注</h4>
                 <p className="text-sm text-gray-600 leading-relaxed">{customer.notes}</p>
               </div>
             )}
@@ -137,13 +137,13 @@ export default function CustomerDetail() {
         {/* Journey Timeline */}
         <div className="lg:col-span-2">
           <div className="flex items-center justify-between mb-8">
-            <h2 className="text-2xl font-bold text-gray-900">Customer Journey</h2>
+            <h2 className="text-2xl font-bold text-gray-900">客户旅程</h2>
             <button
               onClick={() => setIsAddingJourney(true)}
               className="bg-black text-white px-5 py-2.5 rounded-xl text-sm font-medium hover:bg-gray-800 transition-all flex items-center gap-2"
             >
               <Plus className="w-4 h-4" />
-              Log Visit
+              记录拜访
             </button>
           </div>
 
@@ -161,7 +161,7 @@ export default function CustomerDetail() {
                   <div className="bg-white p-6 rounded-3xl border border-gray-100 shadow-sm">
                     <div className="flex items-center justify-between mb-2">
                       <span className="text-xs font-semibold text-gray-400 uppercase tracking-wider">
-                        {format(new Date(entry.visit_date), 'MMMM d, yyyy')}
+                        {format(new Date(entry.visit_date), 'yyyy年MM月dd日')}
                       </span>
                       <span className={cn(
                         "px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider",
@@ -170,7 +170,9 @@ export default function CustomerDetail() {
                         entry.type === 'email' && "bg-purple-50 text-purple-600",
                         entry.type === 'other' && "bg-gray-50 text-gray-600"
                       )}>
-                        {entry.type}
+                        {entry.type === 'meeting' ? '会议' : 
+                         entry.type === 'call' ? '电话' : 
+                         entry.type === 'email' ? '邮件' : '其他'}
                       </span>
                     </div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">{entry.summary}</h3>
@@ -184,7 +186,7 @@ export default function CustomerDetail() {
           ) : (
             <div className="text-center py-20 bg-gray-50 rounded-3xl border border-dashed border-gray-200">
               <Clock className="w-10 h-10 text-gray-300 mx-auto mb-4" />
-              <p className="text-gray-400">No journey entries yet. Log your first visit above.</p>
+              <p className="text-gray-400">尚无旅程记录。请在上方记录您的第一次拜访。</p>
             </div>
           )}
         </div>
@@ -194,11 +196,11 @@ export default function CustomerDetail() {
       {isAddingJourney && (
         <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center p-4 z-50">
           <div className="bg-white w-full max-w-lg rounded-3xl shadow-2xl p-8">
-            <h2 className="text-2xl font-bold mb-6">Log Interaction</h2>
+            <h2 className="text-2xl font-bold mb-6">记录互动</h2>
             <form onSubmit={handleAddJourney} className="space-y-4">
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-semibold text-gray-500 uppercase mb-1">Date</label>
+                  <label className="block text-xs font-semibold text-gray-500 uppercase mb-1">日期</label>
                   <input
                     type="date"
                     required
@@ -208,34 +210,34 @@ export default function CustomerDetail() {
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-semibold text-gray-500 uppercase mb-1">Type</label>
+                  <label className="block text-xs font-semibold text-gray-500 uppercase mb-1">类型</label>
                   <select
                     value={newJourney.type}
                     onChange={e => setNewJourney({...newJourney, type: e.target.value as any})}
                     className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-black/5 focus:border-black outline-none bg-white"
                   >
-                    <option value="meeting">Meeting</option>
-                    <option value="call">Call</option>
-                    <option value="email">Email</option>
-                    <option value="other">Other</option>
+                    <option value="meeting">会议</option>
+                    <option value="call">电话</option>
+                    <option value="email">邮件</option>
+                    <option value="other">其他</option>
                   </select>
                 </div>
               </div>
               <div>
-                <label className="block text-xs font-semibold text-gray-500 uppercase mb-1">Summary</label>
+                <label className="block text-xs font-semibold text-gray-500 uppercase mb-1">摘要</label>
                 <input
                   required
-                  placeholder="Brief summary of the interaction"
+                  placeholder="互动的简短摘要"
                   value={newJourney.summary}
                   onChange={e => setNewJourney({...newJourney, summary: e.target.value})}
                   className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-black/5 focus:border-black outline-none"
                 />
               </div>
               <div>
-                <label className="block text-xs font-semibold text-gray-500 uppercase mb-1">Detailed Notes</label>
+                <label className="block text-xs font-semibold text-gray-500 uppercase mb-1">详细备注</label>
                 <textarea
                   rows={4}
-                  placeholder="What was discussed? Any follow-up actions?"
+                  placeholder="讨论了什么？有哪些后续行动？"
                   value={newJourney.details}
                   onChange={e => setNewJourney({...newJourney, details: e.target.value})}
                   className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-black/5 focus:border-black outline-none resize-none"
@@ -247,13 +249,13 @@ export default function CustomerDetail() {
                   onClick={() => setIsAddingJourney(false)}
                   className="flex-1 px-6 py-3 rounded-xl border border-gray-200 font-medium hover:bg-gray-50 transition-colors"
                 >
-                  Cancel
+                  取消
                 </button>
                 <button
                   type="submit"
                   className="flex-1 px-6 py-3 rounded-xl bg-black text-white font-medium hover:bg-gray-800 transition-colors"
                 >
-                  Save Entry
+                  保存记录
                 </button>
               </div>
             </form>

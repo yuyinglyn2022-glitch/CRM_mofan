@@ -17,7 +17,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 <div className="w-10 h-10 bg-black rounded-xl flex items-center justify-center">
                   <LayoutDashboard className="text-white w-6 h-6" />
                 </div>
-                <span className="text-xl font-bold tracking-tight">Journey CRM</span>
+                <span className="text-xl font-bold tracking-tight">旅程 CRM</span>
               </Link>
             </div>
 
@@ -33,7 +33,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               <button
                 onClick={() => signOut()}
                 className="p-3 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-2xl transition-all"
-                title="Sign Out"
+                title="退出登录"
               >
                 <LogOut className="w-5 h-5" />
               </button>

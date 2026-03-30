@@ -1,5 +1,5 @@
 {
-  "name": "Customer Journey CRM",
-  "description": "A professional CRM system to manage customers and track their journey through visit logs and interactions.",
+  "name": "客户旅程 CRM",
+  "description": "一个专业的 CRM 系统，用于管理客户并通过拜访日志和互动跟踪他们的旅程。",
   "requestFramePermissions": []
 }

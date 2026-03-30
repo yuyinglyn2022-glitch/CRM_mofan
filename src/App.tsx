@@ -73,22 +73,22 @@ function SetupRequired() {
         <div className="w-16 h-16 bg-amber-50 rounded-2xl flex items-center justify-center mx-auto mb-6">
           <AlertCircle className="w-8 h-8 text-amber-500" />
         </div>
-        <h1 className="text-2xl font-bold text-gray-900 mb-2">Configuration Required</h1>
+        <h1 className="text-2xl font-bold text-gray-900 mb-2">需要配置</h1>
         <p className="text-gray-500 mb-8">
-          To use the Journey CRM, you need to connect your Supabase project.
+          要使用旅程 CRM，您需要连接您的 Supabase 项目。
         </p>
 
         <div className="space-y-4 text-left mb-8">
           <div className="p-4 bg-gray-50 rounded-2xl border border-gray-100">
-            <h3 className="text-sm font-semibold text-gray-900 mb-1">1. Get your keys</h3>
+            <h3 className="text-sm font-semibold text-gray-900 mb-1">1. 获取密钥</h3>
             <p className="text-xs text-gray-500">
-              Go to your Supabase Project Settings &gt; API and copy the Project URL and Anon Key.
+              前往 Supabase 项目设置 &gt; API，复制 Project URL 和 Anon Key。
             </p>
           </div>
           <div className="p-4 bg-gray-50 rounded-2xl border border-gray-100">
-            <h3 className="text-sm font-semibold text-gray-900 mb-1">2. Add to Secrets</h3>
+            <h3 className="text-sm font-semibold text-gray-900 mb-1">2. 添加到 Secrets</h3>
             <p className="text-xs text-gray-500">
-              In AI Studio, open the <b>Secrets</b> panel and add <code>VITE_SUPABASE_URL</code> and <code>VITE_SUPABASE_ANON_KEY</code>.
+              在 AI Studio 中，打开 <b>Secrets</b> 面板并添加 <code>VITE_SUPABASE_URL</code> 和 <code>VITE_SUPABASE_ANON_KEY</code>。
             </p>
           </div>
         </div>
@@ -99,7 +99,7 @@ function SetupRequired() {
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 text-sm font-medium text-black hover:underline"
         >
-          Open Supabase Dashboard <ExternalLink className="w-4 h-4" />
+          打开 Supabase 控制台 <ExternalLink className="w-4 h-4" />
         </a>
       </div>
     </div>
